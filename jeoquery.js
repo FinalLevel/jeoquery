@@ -150,12 +150,14 @@ var jeoquery = (function ($) {
   $.fn.jeoCityAutoComplete = function (options) {
     this.autocomplete({
       source: function (request, response) {
-        jeoquery.getGeoNames('search', {
+        var data = {
           featureClass: jeoquery.featureClass.PopulatedPlace,
           style: ((options && options.style) ? options.style : "medium"),
           maxRows: 12,
           name_startsWith: request.term
-        }, function (data) {
+        };
+        data[ (options && options.queryParameter) ? options.queryParameter : "name_startsWith" ] = request.term
+        jeoquery.getGeoNames('search', data, function (data) {
           response(function() {
             data.geonames = $.map(data.geonames, function (item) {
                 var displayName = item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName;
