@@ -151,7 +151,7 @@ var jeoquery = (function ($) {
     this.autocomplete({
       source: function (request, response) {
         var data = {
-          featureClass: jeoquery.featureClass.PopulatedPlace,
+          featureClass: ((options && options.featureClass) ? options.featureClass : jeoquery.featureClass.PopulatedPlace),
           style: ((options && options.style) ? options.style : "medium"),
           maxRows: 12
         };
