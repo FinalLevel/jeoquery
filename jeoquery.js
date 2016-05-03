@@ -153,7 +153,7 @@ var jeoquery = (function ($) {
         var data = {
           featureClass: ((options && options.featureClass) ? options.featureClass : jeoquery.featureClass.PopulatedPlace),
           style: ((options && options.style) ? options.style : "medium"),
-          maxRows: 12
+          maxRows: ((options && options.maxRows) ? options.maxRows : 12)
         };
         data[ (options && options.queryParameter) ? options.queryParameter : "name_startsWith" ] = request.term
         jeoquery.getGeoNames('search', data, function (data) {
